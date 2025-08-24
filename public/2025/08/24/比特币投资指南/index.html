@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+<!-- keywords -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="路易斯">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="路易斯">
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    <meta name="description" content="一个专注于技术分享和个人成长的博客">
+    <meta name="description" content="什么是比特币？比特币（Bitcoin，简称 BTC）是世界上第一个去中心化的数字货币，由中本聪（Satoshi Nakamoto）在 2008 年提出，2009 年正式诞生。它基于区块链技术，具有去中心化、不可篡改、全球流通等特性。 比特币的核心特性去中心化 不受任何中央机构控制 交易记录分布在全球节点上 无法被单点攻击或关闭  稀缺性 总供应量固定为 2100 万个 每四年减半一次挖矿奖励 具有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币投资指南">
+<meta property="og:url" content="https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="路易斯的数字世界">
+<meta property="og:description" content="什么是比特币？比特币（Bitcoin，简称 BTC）是世界上第一个去中心化的数字货币，由中本聪（Satoshi Nakamoto）在 2008 年提出，2009 年正式诞生。它基于区块链技术，具有去中心化、不可篡改、全球流通等特性。 比特币的核心特性去中心化 不受任何中央机构控制 交易记录分布在全球节点上 无法被单点攻击或关闭  稀缺性 总供应量固定为 2100 万个 每四年减半一次挖矿奖励 具有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yourusername.github.io/assets/images/v2-23f05aedee67fd47596271a0c6fbfe8b_r.jpg">
+<meta property="article:published_time" content="2025-08-24T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-23T16:46:07.192Z">
+<meta property="article:author" content="路易斯">
+<meta property="article:tag" content="比特币">
+<meta property="article:tag" content="BTC">
+<meta property="article:tag" content="投资">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="加密货币">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yourusername.github.io/assets/images/v2-23f05aedee67fd47596271a0c6fbfe8b_r.jpg">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    <title>比特币投资指南 · Louis Don&#39;s blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .footer-fixed-btn,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    <!-- 百度统计  -->
+    <!-- 谷歌统计  -->
+    <!-- Google tag (gtag.js) -->
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="路易斯的数字世界" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+        <body class="post-body">
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href="/">Welcome to Louis's Digital World</a>
+        </span>
+    </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/">Welcome to Louis&#39;s Digital World</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name">比特币投资指南</a>
+        </div>
+    </div>
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- donate button -->
+
+    <!-- back to top button -->
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="    height:50vh;
+">
+    <!-- 主页  -->
+    <!-- 404页  -->
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+                比特币投资指南
+            <!-- 404 -->
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            <!-- 404 -->
+        </p>
+        <!-- 文章页 meta -->
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                    <div class="post-intro-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="比特币">比特币</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="BTC">BTC</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="投资">投资</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="加密货币">加密货币</a>
+</div>
+
+                <!-- 文章字数统计 -->
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2025/08/24</span>
+                    <!-- busuanzi -->
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="什么是比特币？"><a href="#什么是比特币？" class="headerlink" title="什么是比特币？"></a>什么是比特币？</h2><p>比特币（Bitcoin，简称 BTC）是世界上第一个去中心化的数字货币，由中本聪（Satoshi Nakamoto）在 2008 年提出，2009 年正式诞生。它基于区块链技术，具有去中心化、不可篡改、全球流通等特性。</p>
+<h2 id="比特币的核心特性"><a href="#比特币的核心特性" class="headerlink" title="比特币的核心特性"></a>比特币的核心特性</h2><h3 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h3><ul>
+<li>不受任何中央机构控制</li>
+<li>交易记录分布在全球节点上</li>
+<li>无法被单点攻击或关闭</li>
+</ul>
+<h3 id="稀缺性"><a href="#稀缺性" class="headerlink" title="稀缺性"></a>稀缺性</h3><ul>
+<li>总供应量固定为 2100 万个</li>
+<li>每四年减半一次挖矿奖励</li>
+<li>具有类似黄金的稀缺属性</li>
+</ul>
+<h3 id="全球流通"><a href="#全球流通" class="headerlink" title="全球流通"></a>全球流通</h3><ul>
+<li>24&#x2F;7 全天候交易</li>
+<li>跨境转账无限制</li>
+<li>交易费用相对较低</li>
+</ul>
+<h2 id="投资策略分析"><a href="#投资策略分析" class="headerlink" title="投资策略分析"></a>投资策略分析</h2><h3 id="📈-长期投资（HODL）"><a href="#📈-长期投资（HODL）" class="headerlink" title="📈 长期投资（HODL）"></a>📈 长期投资（HODL）</h3><p><strong>适合人群</strong>：风险承受能力较强，相信比特币长期价值<br><strong>策略要点</strong>：</p>
+<ul>
+<li>定期定额投资（DCA）</li>
+<li>持有时间 3-5 年以上</li>
+<li>关注基本面而非短期价格波动</li>
+</ul>
+<h3 id="📊-技术分析交易"><a href="#📊-技术分析交易" class="headerlink" title="📊 技术分析交易"></a>📊 技术分析交易</h3><p><strong>适合人群</strong>：有一定技术分析基础，能承受短期波动<br><strong>常用指标</strong>：</p>
+<ul>
+<li><strong>移动平均线</strong>：MA50、MA200</li>
+<li><strong>相对强弱指数</strong>：RSI</li>
+<li><strong>布林带</strong>：Bollinger Bands</li>
+<li><strong>MACD</strong>：移动平均收敛散度<br><img src="/assets/images/v2-23f05aedee67fd47596271a0c6fbfe8b_r.jpg" alt="这是一张BTC 2023-2025年的价格走势图"></li>
+</ul>
+<h2 id="风险管理"><a href="#风险管理" class="headerlink" title="风险管理"></a>风险管理</h2><h3 id="⚠️-主要风险"><a href="#⚠️-主要风险" class="headerlink" title="⚠️ 主要风险"></a>⚠️ 主要风险</h3><ol>
+<li><strong>价格波动风险</strong>：比特币价格波动剧烈</li>
+<li><strong>监管风险</strong>：各国政策变化可能影响价格</li>
+<li><strong>技术风险</strong>：网络安全、钱包安全等</li>
+<li><strong>流动性风险</strong>：极端情况下可能难以快速变现</li>
+</ol>
+<h3 id="️-风险控制措施"><a href="#️-风险控制措施" class="headerlink" title="️ 风险控制措施"></a>️ 风险控制措施</h3><ul>
+<li><strong>分散投资</strong>：不要将所有资金投入比特币</li>
+<li><strong>设置止损</strong>：制定明确的止损策略</li>
+<li><strong>定期评估</strong>：定期检查投资组合表现</li>
+<li><strong>持续学习</strong>：关注市场动态和技术发展</li>
+</ul>
+<h2 id="投资工具和平台"><a href="#投资工具和平台" class="headerlink" title="投资工具和平台"></a>投资工具和平台</h2><h3 id="交易所"><a href="#交易所" class="headerlink" title="交易所"></a>交易所</h3><ul>
+<li><strong>币安（Binance）</strong>：全球最大交易所</li>
+<li><strong>火币（Huobi）</strong>：老牌交易所</li>
+<li><strong>OKX</strong>：提供多种交易产品</li>
+<li><strong>Coinbase</strong>：美国合规交易所</li>
+</ul>
+<h3 id="行情数据网站"><a href="#行情数据网站" class="headerlink" title="行情数据网站"></a>行情数据网站</h3><ul>
+<li>**<a target="_blank" rel="noopener" href="https://www.coingecko.com/zh/Coins/bitcoin">CoinGecko</a>**：实时价格、市值、交易量数据</li>
+<li>**<a target="_blank" rel="noopener" href="https://coinmarketcap.com/currencies/bitcoin/">CoinMarketCap</a>**：权威的加密货币市场数据</li>
+<li>**<a target="_blank" rel="noopener" href="https://www.tradingview.com/symbols/BTCUSD/">TradingView</a>**：专业的技术分析图表</li>
+<li>**<a target="_blank" rel="noopener" href="https://glassnode.com/">Glassnode</a>**：链上数据分析平台</li>
+<li>**<a target="_blank" rel="noopener" href="https://alternative.me/crypto/fear-and-greed-index/">Fear &amp; Greed Index</a>**：市场情绪指标</li>
+</ul>
+<h3 id="🔐-钱包类型"><a href="#🔐-钱包类型" class="headerlink" title="🔐 钱包类型"></a>🔐 钱包类型</h3><ul>
+<li><strong>热钱包</strong>：在线钱包，方便但风险较高</li>
+<li><strong>冷钱包</strong>：离线钱包，安全但使用不便</li>
+<li><strong>硬件钱包</strong>：如 Ledger、Trezor</li>
+</ul>
+<h2 id="投资建议"><a href="#投资建议" class="headerlink" title="投资建议"></a>投资建议</h2><h3 id="新手建议"><a href="#新手建议" class="headerlink" title="新手建议"></a>新手建议</h3><ol>
+<li><strong>从小额开始</strong>：先投入少量资金熟悉市场</li>
+<li><strong>学习基础知识</strong>：了解区块链、加密货币原理</li>
+<li><strong>选择可靠平台</strong>：使用知名交易所和钱包</li>
+<li><strong>制定投资计划</strong>：明确投资目标和风险承受能力</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>比特币作为数字黄金，具有独特的投资价值。但投资比特币需要充分了解其特性和风险，制定合理的投资策略。</p>
+<p>记住：<strong>投资有风险，入市需谨慎</strong>。在投资比特币之前，请确保您已经充分了解相关风险，并且只投资您能够承受损失的资金。</p>
+<hr>
+<p><em>本文仅供参考，不构成投资建议。投资有风险，请谨慎决策。</em></p>
+
+    </article>
+    <!-- license -->
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://yourusername.github.io">路易斯</a>
+            <p>原文链接：<a href="https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</a>
+            <p>发表日期：<a href="https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">八月 24日 2025, 10:00:00 上午</a>
+            <p>更新日期：<a href="https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">八月 24日 2025, 12:46:07 凌晨</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+        </li>
+        <li class="previous">
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2025/08/23/hello-world/" title="Hello World">
+                    <div class="prevTitle">Hello World</div>
+                </a>
+        </li>
+    </ul>
+    <!-- comment -->
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+            
+            
+            
+            <!-- utteranc评论 -->
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+            
+            
+            
+        </div>
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    <!-- Mathjax -->
+</main>
+
+                <!-- profile -->
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+        <div class="social">
+                            <a href="mailto:3259331973@qq.com" class="iconfont-archer email" title="email" ></a>
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+                <span class="iconfont-archer wechat" title="wechat">
+                    <img class="profile-qr" src="/avatar/Wechat.png" />
+                </span>
+                <span class="iconfont-archer qq" title="qq">
+                    <img class="profile-qr" src="/avatar/QQ.png" />
+                </span>
+
+        </div>
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    <!-- 不蒜子  -->
+        <div class="busuanzi-container">
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+        </div>
+</footer>
+
+        </div>
+        <!-- toc -->
+            <div class="toc-wrapper toc-wrapper-loding" style=    top:50vh;
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AF%94%E7%89%B9%E5%B8%81%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是比特币？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">比特币的核心特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">去中心化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%80%E7%BC%BA%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">稀缺性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E7%90%83%E6%B5%81%E9%80%9A"><span class="toc-number">2.3.</span> <span class="toc-text">全球流通</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%95%E8%B5%84%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">投资策略分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%88-%E9%95%BF%E6%9C%9F%E6%8A%95%E8%B5%84%EF%BC%88HODL%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">📈 长期投资（HODL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E4%BA%A4%E6%98%93"><span class="toc-number">3.2.</span> <span class="toc-text">📊 技术分析交易</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">风险管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%A0%EF%B8%8F-%E4%B8%BB%E8%A6%81%E9%A3%8E%E9%99%A9"><span class="toc-number">4.1.</span> <span class="toc-text">⚠️ 主要风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%B8%8F-%E9%A3%8E%E9%99%A9%E6%8E%A7%E5%88%B6%E6%8E%AA%E6%96%BD"><span class="toc-number">4.2.</span> <span class="toc-text">️ 风险控制措施</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%95%E8%B5%84%E5%B7%A5%E5%85%B7%E5%92%8C%E5%B9%B3%E5%8F%B0"><span class="toc-number">5.</span> <span class="toc-text">投资工具和平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E6%89%80"><span class="toc-number">5.1.</span> <span class="toc-text">交易所</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E6%83%85%E6%95%B0%E6%8D%AE%E7%BD%91%E7%AB%99"><span class="toc-number">5.2.</span> <span class="toc-text">行情数据网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%90-%E9%92%B1%E5%8C%85%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.3.</span> <span class="toc-text">🔐 钱包类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%95%E8%B5%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text">投资建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E6%89%8B%E5%BB%BA%E8%AE%AE"><span class="toc-number">6.1.</span> <span class="toc-text">新手建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
+            </div>
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+        
+        
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 2
+        </div>
+        <!-- search  -->
+    </div>
+    <div class="post-archive">
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">比特币投资指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2025/08/23/hello-world/">Hello World</a>
+        </li>
+            </ul>
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+            <span class="sidebar-tag-name" data-tags="比特币">
+                <span class="iconfont-archer">&#xe606;</span>
+                比特币
+            </span>
+            <span class="sidebar-tag-name" data-tags="BTC">
+                <span class="iconfont-archer">&#xe606;</span>
+                BTC
+            </span>
+            <span class="sidebar-tag-name" data-tags="投资">
+                <span class="iconfont-archer">&#xe606;</span>
+                投资
+            </span>
+            <span class="sidebar-tag-name" data-tags="区块链">
+                <span class="iconfont-archer">&#xe606;</span>
+                区块链
+            </span>
+            <span class="sidebar-tag-name" data-tags="加密货币">
+                <span class="iconfont-archer">&#xe606;</span>
+                加密货币
+            </span>
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+        <span class="sidebar-category-name" data-categories="投资">
+            <span class="iconfont-archer">&#xe60a;</span>
+            投资
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://yourusername.github.io",
+        root: siteMetaRoot,
+        author: "路易斯"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+        <!-- main func -->
+        <script src="/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <!-- algolia -->
+        <!-- busuanzi -->
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        <!-- async load share.js -->
+            <script src="/scripts/share.js" async></script>
+        <!-- mermaid -->
+    </body>
+</html>

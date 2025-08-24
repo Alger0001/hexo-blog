@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>路易斯的数字世界</title>
+  
+  <subtitle>技术分享与生活感悟</subtitle>
+  <link href="https://yourusername.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://yourusername.github.io/"/>
+  <updated>2025-08-23T16:46:07.192Z</updated>
+  <id>https://yourusername.github.io/</id>
+  
+  <author>
+    <name>路易斯</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>比特币投资指南</title>
+    <link href="https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/"/>
+    <id>https://yourusername.github.io/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</id>
+    <published>2025-08-24T02:00:00.000Z</published>
+    <updated>2025-08-23T16:46:07.192Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是比特币？"><a href="#什么是比特币？" class="headerlink" title="什么是比特币？"></a>什么是比特币？</h2><p>比特币（Bitcoin，简称 BTC）是世界上第一个去中心化的数字货币，由中本聪（Satoshi Nakamoto）在 2008 年提出，2009 年正式诞生。它基于区块链技术，具有去中心化、不可篡改、全球流通等特性。</p><h2 id="比特币的核心特性"><a href="#比特币的核心特性" class="headerlink" title="比特币的核心特性"></a>比特币的核心特性</h2><h3 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h3><ul><li>不受任何中央机构控制</li><li>交易记录分布在全球节点上</li><li>无法被单点攻击或关闭</li></ul><h3 id="稀缺性"><a href="#稀缺性" class="headerlink" title="稀缺性"></a>稀缺性</h3><ul><li>总供应量固定为 2100 万个</li><li>每四年减半一次挖矿奖励</li><li>具有类似黄金的稀缺属性</li></ul><h3 id="全球流通"><a href="#全球流通" class="headerlink" title="全球流通"></a>全球流通</h3><ul><li>24&#x2F;7 全天候交易</li><li>跨境转账无限制</li><li>交易费用相对较低</li></ul><h2 id="投资策略分析"><a href="#投资策略分析" class="headerlink" title="投资策略分析"></a>投资策略分析</h2><h3 id="📈-长期投资（HODL）"><a href="#📈-长期投资（HODL）" class="headerlink" title="📈 长期投资（HODL）"></a>📈 长期投资（HODL）</h3><p><strong>适合人群</strong>：风险承受能力较强，相信比特币长期价值<br><strong>策略要点</strong>：</p><ul><li>定期定额投资（DCA）</li><li>持有时间 3-5 年以上</li><li>关注基本面而非短期价格波动</li></ul><h3 id="📊-技术分析交易"><a href="#📊-技术分析交易" class="headerlink" title="📊 技术分析交易"></a>📊 技术分析交易</h3><p><strong>适合人群</strong>：有一定技术分析基础，能承受短期波动<br><strong>常用指标</strong>：</p><ul><li><strong>移动平均线</strong>：MA50、MA200</li><li><strong>相对强弱指数</strong>：RSI</li><li><strong>布林带</strong>：Bollinger Bands</li><li><strong>MACD</strong>：移动平均收敛散度<br><img src="/assets/images/v2-23f05aedee67fd47596271a0c6fbfe8b_r.jpg" alt="这是一张BTC 2023-2025年的价格走势图"></li></ul><h2 id="风险管理"><a href="#风险管理" class="headerlink" title="风险管理"></a>风险管理</h2><h3 id="⚠️-主要风险"><a href="#⚠️-主要风险" class="headerlink" title="⚠️ 主要风险"></a>⚠️ 主要风险</h3><ol><li><strong>价格波动风险</strong>：比特币价格波动剧烈</li><li><strong>监管风险</strong>：各国政策变化可能影响价格</li><li><strong>技术风险</strong>：网络安全、钱包安全等</li><li><strong>流动性风险</strong>：极端情况下可能难以快速变现</li></ol><h3 id="️-风险控制措施"><a href="#️-风险控制措施" class="headerlink" title="️ 风险控制措施"></a>️ 风险控制措施</h3><ul><li><strong>分散投资</strong>：不要将所有资金投入比特币</li><li><strong>设置止损</strong>：制定明确的止损策略</li><li><strong>定期评估</strong>：定期检查投资组合表现</li><li><strong>持续学习</strong>：关注市场动态和技术发展</li></ul><h2 id="投资工具和平台"><a href="#投资工具和平台" class="headerlink" title="投资工具和平台"></a>投资工具和平台</h2><h3 id="交易所"><a href="#交易所" class="headerlink" title="交易所"></a>交易所</h3><ul><li><strong>币安（Binance）</strong>：全球最大交易所</li><li><strong>火币（Huobi）</strong>：老牌交易所</li><li><strong>OKX</strong>：提供多种交易产品</li><li><strong>Coinbase</strong>：美国合规交易所</li></ul><h3 id="行情数据网站"><a href="#行情数据网站" class="headerlink" title="行情数据网站"></a>行情数据网站</h3><ul><li>**<a href="https://www.coingecko.com/zh/Coins/bitcoin">CoinGecko</a>**：实时价格、市值、交易量数据</li><li>**<a href="https://coinmarketcap.com/currencies/bitcoin/">CoinMarketCap</a>**：权威的加密货币市场数据</li><li>**<a href="https://www.tradingview.com/symbols/BTCUSD/">TradingView</a>**：专业的技术分析图表</li><li>**<a href="https://glassnode.com/">Glassnode</a>**：链上数据分析平台</li><li>**<a href="https://alternative.me/crypto/fear-and-greed-index/">Fear &amp; Greed Index</a>**：市场情绪指标</li></ul><h3 id="🔐-钱包类型"><a href="#🔐-钱包类型" class="headerlink" title="🔐 钱包类型"></a>🔐 钱包类型</h3><ul><li><strong>热钱包</strong>：在线钱包，方便但风险较高</li><li><strong>冷钱包</strong>：离线钱包，安全但使用不便</li><li><strong>硬件钱包</strong>：如 Ledger、Trezor</li></ul><h2 id="投资建议"><a href="#投资建议" class="headerlink" title="投资建议"></a>投资建议</h2><h3 id="新手建议"><a href="#新手建议" class="headerlink" title="新手建议"></a>新手建议</h3><ol><li><strong>从小额开始</strong>：先投入少量资金熟悉市场</li><li><strong>学习基础知识</strong>：了解区块链、加密货币原理</li><li><strong>选择可靠平台</strong>：使用知名交易所和钱包</li><li><strong>制定投资计划</strong>：明确投资目标和风险承受能力</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>比特币作为数字黄金，具有独特的投资价值。但投资比特币需要充分了解其特性和风险，制定合理的投资策略。</p><p>记住：<strong>投资有风险，入市需谨慎</strong>。在投资比特币之前，请确保您已经充分了解相关风险，并且只投资您能够承受损失的资金。</p><hr><p><em>本文仅供参考，不构成投资建议。投资有风险，请谨慎决策。</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是比特币？&quot;&gt;&lt;a href=&quot;#什么是比特币？&quot; class=&quot;headerlink&quot; title=&quot;什么是比特币？&quot;&gt;&lt;/a&gt;什么是比特币？&lt;/h2&gt;&lt;p&gt;比特币（Bitcoin，简称 BTC）是世界上第一个去中心化的数字货币，由中本聪（Satoshi N</summary>
+      
+    
+    
+    
+    <category term="投资" scheme="https://yourusername.github.io/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    <category term="加密货币" scheme="https://yourusername.github.io/categories/%E6%8A%95%E8%B5%84/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/"/>
+    
+    
+    <category term="比特币" scheme="https://yourusername.github.io/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+    <category term="BTC" scheme="https://yourusername.github.io/tags/BTC/"/>
+    
+    <category term="投资" scheme="https://yourusername.github.io/tags/%E6%8A%95%E8%B5%84/"/>
+    
+    <category term="区块链" scheme="https://yourusername.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="加密货币" scheme="https://yourusername.github.io/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://yourusername.github.io/2025/08/23/hello-world/"/>
+    <id>https://yourusername.github.io/2025/08/23/hello-world/</id>
+    <published>2025-08-23T13:14:05.406Z</published>
+    <updated>2025-08-23T13:01:09.760Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
