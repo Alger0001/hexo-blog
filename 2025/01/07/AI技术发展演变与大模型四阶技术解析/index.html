@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+<!-- keywords -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="路易斯">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="路易斯">
+        <meta name="keywords" content="博客,技术,生活,分享,比特币,投资,hexo,hexo-theme,hexo-blog">
+    <meta name="description" content="一个专注于技术分享和个人成长的博客">
+    <meta name="description" content="从生物启发的信号处理到现代大语言模型，AI技术经历了从符号主义到连接主义、从弱人工智能到强人工智能的演变。本文深入剖析AI发展的四个阶段，并详细解读大模型技术的四阶架构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ai学习第一章">
+<meta property="og:url" content="https://alger0001.github.io/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="路易斯的数字世界">
+<meta property="og:description" content="从生物启发的信号处理到现代大语言模型，AI技术经历了从符号主义到连接主义、从弱人工智能到强人工智能的演变。本文深入剖析AI发展的四个阶段，并详细解读大模型技术的四阶架构。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-07T09:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-28T15:09:11.834Z">
+<meta property="article:author" content="路易斯">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Ai-PM-Meetup">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    <title>Ai学习第一章 · Louis Don&#39;s blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .footer-fixed-btn,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    <!-- 百度统计  -->
+    <!-- 谷歌统计  -->
+    <!-- Google tag (gtag.js) -->
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="路易斯的数字世界" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+        <body class="post-body">
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href="/">Welcome to Louis's Digital World</a>
+        </span>
+    </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/">Welcome to Louis&#39;s Digital World</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name">Ai学习第一章</a>
+        </div>
+    </div>
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- donate button -->
+
+    <!-- back to top button -->
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="    height:50vh;
+">
+    <!-- 主页  -->
+    <!-- 404页  -->
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+                Ai学习第一章
+            <!-- 404 -->
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            <!-- 404 -->
+        </p>
+        <!-- 文章页 meta -->
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                    <div class="post-intro-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="技术">技术</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="学习">学习</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="AI">AI</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Ai-PM-Meetup">Ai-PM-Meetup</a>
+</div>
+
+                <!-- 文章字数统计 -->
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2025/01/07</span>
+                    <!-- busuanzi -->
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="AI技术发展演变与大模型四阶技术解析"><a href="#AI技术发展演变与大模型四阶技术解析" class="headerlink" title="AI技术发展演变与大模型四阶技术解析"></a>AI技术发展演变与大模型四阶技术解析</h1><blockquote>
+<p>AI技术的演变如同人类文明的发展历程，从最初的模仿生物信号处理，到现在的通用人工智能系统，每一次跃升都带来了新的可能性。本文将带您深入了解AI技术发展的脉络，以及大模型时代的四阶技术架构。</p>
+</blockquote>
+<h2 id="AI技术发展的四个阶段"><a href="#AI技术发展的四个阶段" class="headerlink" title="AI技术发展的四个阶段"></a>AI技术发展的四个阶段</h2><h3 id="1-生物思考信号-→-专家系统（符号主义时代）"><a href="#1-生物思考信号-→-专家系统（符号主义时代）" class="headerlink" title="1. 生物思考信号 → 专家系统（符号主义时代）"></a>1. 生物思考信号 → 专家系统（符号主义时代）</h3><p><strong>起源与核心思想：</strong></p>
+<ul>
+<li><strong>生物启发</strong>：早期AI研究从人类大脑的工作机制中汲取灵感，试图模拟神经元的信号传递过程</li>
+<li><strong>符号主义主导</strong>：基于逻辑推理和符号操作的专家系统成为主流</li>
+<li><strong>核心特征</strong>：规则驱动、知识库为中心、确定性推理</li>
+</ul>
+<p><strong>代表技术：</strong></p>
+<ul>
+<li>专家系统（Expert Systems）</li>
+<li>基于规则的推理引擎</li>
+<li>知识图谱和本体论</li>
+</ul>
+<p><strong>局限性：</strong></p>
+<ul>
+<li>难以处理不确定性和模糊性</li>
+<li>知识获取的”瓶颈”问题</li>
+<li>缺乏学习和适应能力</li>
+</ul>
+<h3 id="2-弱人工智能（专家系统和规则）→-统计机器学习"><a href="#2-弱人工智能（专家系统和规则）→-统计机器学习" class="headerlink" title="2. 弱人工智能（专家系统和规则）→ 统计机器学习"></a>2. 弱人工智能（专家系统和规则）→ 统计机器学习</h3><p><strong>技术跃升：</strong></p>
+<ul>
+<li><strong>数据驱动</strong>：从规则导向转向数据导向</li>
+<li><strong>概率论基础</strong>：引入统计学习理论</li>
+<li><strong>算法创新</strong>：从简单的线性模型到复杂的非线性算法</li>
+</ul>
+<p><strong>代表工具与框架：</strong></p>
+<ul>
+<li><strong>scikit-learn</strong>：Python机器学习经典库，支持多种传统算法</li>
+<li><strong>XGBoost</strong>：梯度提升决策树，Kaggle竞赛的”杀手锏”</li>
+<li><strong>随机森林、SVM、神经网络基础模型</strong></li>
+</ul>
+<p><strong>关键突破：</strong></p>
+<ul>
+<li>处理大规模数据的能力</li>
+<li>特征工程的重要性凸显</li>
+<li>从监督学习到无监督学习的拓展</li>
+</ul>
+<h3 id="3-深度学习（深度神经网络）"><a href="#3-深度学习（深度神经网络）" class="headerlink" title="3. 深度学习（深度神经网络）"></a>3. 深度学习（深度神经网络）</h3><p><strong>革命性变革：</strong></p>
+<ul>
+<li><strong>神经网络复兴</strong>：多层感知机的成功应用</li>
+<li><strong>GPU加速</strong>：并行计算能力的指数级提升</li>
+<li><strong>大数据+深度网络</strong>：ImageNet竞赛的里程碑意义</li>
+</ul>
+<p><strong>核心框架：</strong></p>
+<ul>
+<li><strong>TensorFlow</strong>：Google开源，生产环境首选</li>
+<li><strong>PyTorch</strong>：Facebook开源，研究友好，动态图特性</li>
+<li><strong>Keras</strong>：高层API，快速原型开发</li>
+</ul>
+<p><strong>技术创新：</strong></p>
+<ul>
+<li>卷积神经网络（CNN）在计算机视觉领域的突破</li>
+<li>循环神经网络（RNN）和LSTM在序列建模上的应用</li>
+<li>注意力机制和Transformer架构的诞生</li>
+</ul>
+<h3 id="4-大语言模型（预训练-微调-开源社区）"><a href="#4-大语言模型（预训练-微调-开源社区）" class="headerlink" title="4. 大语言模型（预训练+微调+开源社区）"></a>4. 大语言模型（预训练+微调+开源社区）</h3><p><strong>新时代特征：</strong></p>
+<ul>
+<li><strong>预训练范式</strong>：在大规模无标注数据上学习通用知识</li>
+<li><strong>微调适配</strong>：针对特定任务进行参数调整</li>
+<li><strong>开源生态</strong>：社区驱动的模型迭代和应用创新</li>
+</ul>
+<p><strong>发展脉络：</strong></p>
+<ul>
+<li>BERT（2018）：双向编码器，预训练+微调的奠基性工作</li>
+<li>GPT系列：从生成式预训练到ChatGPT的爆发</li>
+<li>多模态模型：文本、图像、音频的统一建模</li>
+</ul>
+<h2 id="AI大模型四阶技术架构"><a href="#AI大模型四阶技术架构" class="headerlink" title="AI大模型四阶技术架构"></a>AI大模型四阶技术架构</h2><h3 id="第一阶：提示词工程（Prompt-Engineering）"><a href="#第一阶：提示词工程（Prompt-Engineering）" class="headerlink" title="第一阶：提示词工程（Prompt Engineering）"></a>第一阶：提示词工程（Prompt Engineering）</h3><p><strong>面向对象：终端用户</strong></p>
+<p><strong>核心理念：</strong><br>提示词工程是大模型时代最直接、最重要的交互方式。通过精心设计的提示，可以显著提升模型输出的质量和相关性。</p>
+<p><strong>最佳实践框架：</strong></p>
+<h4 id="1-角色设定（Role-Setting）"><a href="#1-角色设定（Role-Setting）" class="headerlink" title="1. 角色设定（Role Setting）"></a>1. 角色设定（Role Setting）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">你是一位经验丰富的[专业领域]专家，拥有[具体资质]。</span><br><span class="line">请以[特定风格]的方式回答以下问题：</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果分析：</strong></p>
+<ul>
+<li>提供上下文和期望的行为模式</li>
+<li>减少模型的”幻觉”输出</li>
+<li>提高回答的专业性和一致性</li>
+</ul>
+<h4 id="2-指令注入（Instruction-Injection）"><a href="#2-指令注入（Instruction-Injection）" class="headerlink" title="2. 指令注入（Instruction Injection）"></a>2. 指令注入（Instruction Injection）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请始终记住以下原则：</span><br><span class="line"><span class="bullet">1.</span> [核心原则1]</span><br><span class="line"><span class="bullet">2.</span> [核心原则2]</span><br><span class="line"><span class="bullet">3.</span> [具体执行指南]</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>常驻问题设置</li>
+<li>行为准则固化</li>
+<li>输出格式标准化</li>
+</ul>
+<h4 id="3-问题拆解（Problem-Decomposition）"><a href="#3-问题拆解（Problem-Decomposition）" class="headerlink" title="3. 问题拆解（Problem Decomposition）"></a>3. 问题拆解（Problem Decomposition）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将复杂问题分解为以下子问题：</span><br><span class="line"><span class="bullet">1.</span> [子问题1] - 分析维度：[维度说明]</span><br><span class="line"><span class="bullet">2.</span> [子问题2] - 关键要素：[要素列举]</span><br><span class="line"><span class="bullet">3.</span> [子问题3] - 解决方案：[方案框架]</span><br></pre></td></tr></table></figure>
+
+<p><strong>优势：</strong></p>
+<ul>
+<li>降低认知复杂度</li>
+<li>提高答案的结构化和完整性</li>
+<li>便于模型的逐步推理</li>
+</ul>
+<h4 id="4-分层设计（Hierarchical-Design）"><a href="#4-分层设计（Hierarchical-Design）" class="headerlink" title="4. 分层设计（Hierarchical Design）"></a>4. 分层设计（Hierarchical Design）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一层：[宏观概述]</span><br><span class="line">第二层：[具体分析]</span><br><span class="line">第三层：[细节说明]</span><br><span class="line">第四层：[实施建议]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-编程思维（Programmatic-Thinking）"><a href="#5-编程思维（Programmatic-Thinking）" class="headerlink" title="5. 编程思维（Programmatic Thinking）"></a>5. 编程思维（Programmatic Thinking）</h4><ul>
+<li>修改变量字段：动态调整角色、参数、约束条件</li>
+<li>条件分支：基于不同情况提供不同响应</li>
+<li>迭代优化：通过反馈循环持续改进提示</li>
+</ul>
+<h4 id="6-Few-Shot学习（Few-Shot-Learning）"><a href="#6-Few-Shot学习（Few-Shot-Learning）" class="headerlink" title="6. Few-Shot学习（Few-Shot Learning）"></a>6. Few-Shot学习（Few-Shot Learning）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入：[具体输入]</span><br><span class="line">输出：[期望输出]</span><br><span class="line"></span><br><span class="line">示例2：</span><br><span class="line">输入：[另一个输入]</span><br><span class="line">输出：[对应输出]</span><br><span class="line"></span><br><span class="line">现在请处理：</span><br><span class="line">输入：[新问题]</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二阶：AI-Agent（智能体）"><a href="#第二阶：AI-Agent（智能体）" class="headerlink" title="第二阶：AI Agent（智能体）"></a>第二阶：AI Agent（智能体）</h3><p><strong>面向对象：大模型应用开发人员</strong></p>
+<p><strong>核心理念：</strong><br>AI Agent是将大语言模型与工具、记忆、决策能力结合的智能系统，能够自主执行复杂任务。</p>
+<h4 id="基础架构：ReAct范式"><a href="#基础架构：ReAct范式" class="headerlink" title="基础架构：ReAct范式"></a>基础架构：ReAct范式</h4><p><strong>ReAct &#x3D; Reasoning + Acting</strong></p>
+<p><strong>核心流程：</strong></p>
+<ol>
+<li><strong>Reasoning（推理）</strong>：分析当前状态，规划下一步行动</li>
+<li><strong>Acting（行动）</strong>：执行具体操作，调用外部工具</li>
+<li><strong>Observation（观察）</strong>：获取执行结果，反馈到推理过程</li>
+<li><strong>循环迭代</strong>：基于新信息调整策略</li>
+</ol>
+<p><strong>优势：</strong></p>
+<ul>
+<li>透明的决策过程</li>
+<li>实时适应环境变化</li>
+<li>错误检测和纠正机制</li>
+</ul>
+<h4 id="LangChain框架"><a href="#LangChain框架" class="headerlink" title="LangChain框架"></a>LangChain框架</h4><p><strong>核心组件：</strong></p>
+<ul>
+<li><strong>LLM</strong>：大语言模型接口层</li>
+<li><strong>Memory</strong>：记忆管理系统，支持多种记忆类型</li>
+<li><strong>Prompt</strong>：提示词模板和管理系统</li>
+<li><strong>Agent</strong>：智能体执行引擎</li>
+</ul>
+<p><strong>高级功能：</strong></p>
+<ul>
+<li>联网查询能力</li>
+<li>数学运算集成</li>
+<li>外部API调用</li>
+<li>工作流编排</li>
+</ul>
+<h4 id="智能体分类体系"><a href="#智能体分类体系" class="headerlink" title="智能体分类体系"></a>智能体分类体系</h4><p><strong>1. 行动智能体（Action Agents）</strong></p>
+<ul>
+<li>专注于执行具体任务</li>
+<li>具备工具调用能力</li>
+<li>强调执行效率和准确性</li>
+</ul>
+<p><strong>2. 模拟智能体（Simulation Agents）</strong></p>
+<ul>
+<li>用于建模和预测</li>
+<li>环境模拟和情景分析</li>
+<li>决策支持系统</li>
+</ul>
+<p><strong>3. 自主智能体（Autonomous Agents）</strong></p>
+<ul>
+<li>高度自主的决策能力</li>
+<li>长期目标驱动</li>
+<li>自适应学习和进化</li>
+</ul>
+<h3 id="第三阶：大模型微调"><a href="#第三阶：大模型微调" class="headerlink" title="第三阶：大模型微调"></a>第三阶：大模型微调</h3><p><strong>面向对象：领域模型研发与私有化团队</strong></p>
+<h4 id="微调的必然性"><a href="#微调的必然性" class="headerlink" title="微调的必然性"></a>微调的必然性</h4><p><strong>1. 预训练成本过高</strong></p>
+<ul>
+<li>占据大量GPU资源和存储空间</li>
+<li>训练周期长，迭代困难</li>
+<li>能耗和成本压力巨大</li>
+</ul>
+<p><strong>2. 提示词工程的天花板</strong></p>
+<ul>
+<li>Token消耗导致推理成本上升</li>
+<li>复杂提示难以维护和优化</li>
+<li>模型行为的不确定性</li>
+</ul>
+<p><strong>3. 领域数据缺失</strong></p>
+<ul>
+<li>通用模型缺乏特定领域知识</li>
+<li>专业术语和概念理解不足</li>
+<li>行业规范和标准不熟悉</li>
+</ul>
+<p><strong>4. 数据安全与隐私保护</strong></p>
+<ul>
+<li>敏感数据无法上传到公共服务</li>
+<li>合规要求限制数据使用</li>
+<li>知识产权保护需求</li>
+</ul>
+<p><strong>5. 个性化服务需求</strong></p>
+<ul>
+<li>用户偏好和行为模式的定制化</li>
+<li>品牌特色和调性的体现</li>
+<li>特定场景的优化需求</li>
+</ul>
+<h4 id="微调技术体系"><a href="#微调技术体系" class="headerlink" title="微调技术体系"></a>微调技术体系</h4><p><strong>全量微调（Full Fine-Tuning）</strong></p>
+<ul>
+<li>调整模型全部参数</li>
+<li>获得最佳性能但成本最高</li>
+<li>适用于有充足计算资源的场景</li>
+</ul>
+<p><strong>高效微调技术：</strong></p>
+<p><strong>1. 有监督微调（SFT）</strong></p>
+<ul>
+<li>使用标注数据进行监督学习</li>
+<li>提高模型在特定任务上的表现</li>
+<li>相对较低的计算成本</li>
+</ul>
+<p><strong>2. 基于人类反馈的强化学习（RLHF）</strong></p>
+<ul>
+<li>人工标注偏好数据</li>
+<li>学习人类价值观和偏好</li>
+<li>提高模型的安全性和可靠性</li>
+</ul>
+<p><strong>3. 基于AI反馈的强化学习（RLAIF）</strong></p>
+<ul>
+<li>使用AI生成反馈数据</li>
+<li>降低人工标注成本</li>
+<li>加速迭代过程</li>
+</ul>
+<h4 id="主流技术方案"><a href="#主流技术方案" class="headerlink" title="主流技术方案"></a>主流技术方案</h4><p><strong>1. 围绕Token做文章</strong></p>
+<ul>
+<li>保持语言模型架构不变</li>
+<li>专注于词汇表和嵌入层的优化</li>
+<li>最小化架构变更的影响</li>
+</ul>
+<p><strong>2. 特定场景任务优化</strong></p>
+<ul>
+<li><strong>LoRA（Low-Rank Adaptation）</strong>：低秩矩阵适配</li>
+<li><strong>QLoRA</strong>：量化LoRA，减少内存占用</li>
+<li><strong>AdaLoRA</strong>：自适应LoRA，根据重要性动态调整</li>
+</ul>
+<p><strong>3. 新思路探索</strong></p>
+<ul>
+<li><strong>IA3（Infused Adapter by Inhibiting and Amplifying）</strong>：通过少量数据实现高效微调</li>
+<li><strong>UniPELT</strong>：统一参数高效微调框架，支持多种技术融合</li>
+</ul>
+<h3 id="第四阶：预训练技术"><a href="#第四阶：预训练技术" class="headerlink" title="第四阶：预训练技术"></a>第四阶：预训练技术</h3><p><strong>面向对象：大模型研究人员，数据科学家</strong></p>
+<p>预训练技术是大模型发展的基石，通过在大规模数据上学习通用知识，为下游任务奠定基础。</p>
+<h4 id="三种网络框架"><a href="#三种网络框架" class="headerlink" title="三种网络框架"></a>三种网络框架</h4><p><strong>1. Encoders（编码器）</strong></p>
+<ul>
+<li><strong>代表模型</strong>：BERT系列</li>
+<li><strong>核心优势</strong>：优秀的理解和表征能力</li>
+<li><strong>应用场景</strong>：分类、检索、问答系统</li>
+</ul>
+<p><strong>2. Decoders（解码器）</strong></p>
+<ul>
+<li><strong>代表模型</strong>：GPT系列</li>
+<li><strong>核心优势</strong>：强大的生成能力和推理能力</li>
+<li><strong>应用场景</strong>：对话系统、创作辅助、代码生成</li>
+</ul>
+<p><strong>3. Encoder-Decoder（Both）</strong></p>
+<ul>
+<li><strong>代表模型</strong>：T5、BART</li>
+<li><strong>核心优势</strong>：理解和生成的平衡能力</li>
+<li><strong>应用场景</strong>：翻译、摘要、对话生成</li>
+</ul>
+<h4 id="预训练策略"><a href="#预训练策略" class="headerlink" title="预训练策略"></a>预训练策略</h4><p><strong>1. 自监督学习</strong></p>
+<ul>
+<li>Masked Language Modeling（MLM）</li>
+<li>Next Token Prediction</li>
+<li>Contrastive Learning</li>
+</ul>
+<p><strong>2. 多任务预训练</strong></p>
+<ul>
+<li>统一任务格式</li>
+<li>跨模态学习</li>
+<li>知识增强</li>
+</ul>
+<p><strong>3. 高效预训练技术</strong></p>
+<ul>
+<li>梯度累积</li>
+<li>混合精度训练</li>
+<li>模型并行</li>
+</ul>
+<h2 id="技术演进的启示"><a href="#技术演进的启示" class="headerlink" title="技术演进的启示"></a>技术演进的启示</h2><h3 id="发展趋势分析"><a href="#发展趋势分析" class="headerlink" title="发展趋势分析"></a>发展趋势分析</h3><ol>
+<li><strong>从专用到通用</strong>：从单一任务到多模态通用AI</li>
+<li><strong>从封闭到开放</strong>：开源生态的繁荣发展</li>
+<li><strong>从中心化到分布式</strong>：边缘计算和联邦学习的兴起</li>
+<li><strong>从技术到伦理</strong>：负责任AI的发展方向</li>
+</ol>
+<h3 id="产业化思考"><a href="#产业化思考" class="headerlink" title="产业化思考"></a>产业化思考</h3><ol>
+<li><strong>技术栈的选择</strong>：根据应用场景选择合适的AI技术层次</li>
+<li><strong>成本效益平衡</strong>：在性能和成本之间找到最优解</li>
+<li><strong>人才结构优化</strong>：构建多层次的AI技术团队</li>
+<li><strong>伦理合规保障</strong>：建立负责任的AI治理体系</li>
+</ol>
+<h3 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h3><p>AI技术的演进从未停止。从符号主义到连接主义，从弱人工智能到通用人工智能，每一次技术跃升都带来了新的可能性。大模型四阶技术架构为我们提供了一个清晰的技术路径图，指引着AI向更深层次的发展。</p>
+<p>在这个快速发展的时代，理解技术演进的脉络、把握核心技术的能力，将成为每一位技术从业者的核心竞争力。</p>
+<hr>
+<p><em>本文内容基于AI技术发展历程的梳理和分析，旨在帮助读者建立对AI技术的系统性认识。如有任何问题或建议，欢迎在评论区交流讨论。</em></p>
+
+    </article>
+    <!-- license -->
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://alger0001.github.io">路易斯</a>
+            <p>原文链接：<a href="https://alger0001.github.io/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">https://alger0001.github.io/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/</a>
+            <p>发表日期：<a href="https://alger0001.github.io/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">January 7th 2025, 5:00:00 pm</a>
+            <p>更新日期：<a href="https://alger0001.github.io/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">September 28th 2025, 11:09:11 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2025/08/23/hello-world/" title="Hello World">
+                    <div class="nextTitle">Hello World</div>
+                </a>
+        </li>
+        <li class="previous">
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2025/01/07/%E5%B9%BF%E5%B7%9EAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%A4%A7%E4%BC%9A%E6%B4%9E%E5%AF%9F-AI%E5%9C%A8%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/" title="广州AI产品经理大会洞察：AI在金融领域的应用与落地实践">
+                    <div class="prevTitle">广州AI产品经理大会洞察：AI在金融领域的应用与落地实践</div>
+                </a>
+        </li>
+    </ul>
+    <!-- comment -->
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+            
+            
+            
+            <!-- utteranc评论 -->
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+            
+            
+            
+        </div>
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    <!-- Mathjax -->
+</main>
+
+                <!-- profile -->
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+        <div class="social">
+                            <a href="mailto:3259331973@qq.com" class="iconfont-archer email" title="email" ></a>
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+                <span class="iconfont-archer wechat" title="wechat">
+                    <img class="profile-qr" src="/avatar/Wechat.png" />
+                </span>
+                <span class="iconfont-archer qq" title="qq">
+                    <img class="profile-qr" src="/avatar/QQ.png" />
+                </span>
+
+        </div>
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    <!-- 不蒜子  -->
+        <div class="busuanzi-container">
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+        </div>
+</footer>
+
+        </div>
+        <!-- toc -->
+            <div class="toc-wrapper toc-wrapper-loding" style=    top:50vh;
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">AI技术发展演变与大模型四阶技术解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.</span> <span class="toc-text">AI技术发展的四个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%9F%E7%89%A9%E6%80%9D%E8%80%83%E4%BF%A1%E5%8F%B7-%E2%86%92-%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%EF%BC%88%E7%AC%A6%E5%8F%B7%E4%B8%BB%E4%B9%89%E6%97%B6%E4%BB%A3%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 生物思考信号 → 专家系统（符号主义时代）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%88%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%A7%84%E5%88%99%EF%BC%89%E2%86%92-%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 弱人工智能（专家系统和规则）→ 统计机器学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 深度学习（深度神经网络）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88%E9%A2%84%E8%AE%AD%E7%BB%83-%E5%BE%AE%E8%B0%83-%E5%BC%80%E6%BA%90%E7%A4%BE%E5%8C%BA%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 大语言模型（预训练+微调+开源社区）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">AI大模型四阶技术架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88Prompt-Engineering%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一阶：提示词工程（Prompt Engineering）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%A7%92%E8%89%B2%E8%AE%BE%E5%AE%9A%EF%BC%88Role-Setting%EF%BC%89"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">1. 角色设定（Role Setting）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8C%87%E4%BB%A4%E6%B3%A8%E5%85%A5%EF%BC%88Instruction-Injection%EF%BC%89"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2. 指令注入（Instruction Injection）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%97%AE%E9%A2%98%E6%8B%86%E8%A7%A3%EF%BC%88Problem-Decomposition%EF%BC%89"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">3. 问题拆解（Problem Decomposition）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1%EF%BC%88Hierarchical-Design%EF%BC%89"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">4. 分层设计（Hierarchical Design）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%BC%96%E7%A8%8B%E6%80%9D%E7%BB%B4%EF%BC%88Programmatic-Thinking%EF%BC%89"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">5. 编程思维（Programmatic Thinking）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Few-Shot%E5%AD%A6%E4%B9%A0%EF%BC%88Few-Shot-Learning%EF%BC%89"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">6. Few-Shot学习（Few-Shot Learning）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%EF%BC%9AAI-Agent%EF%BC%88%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二阶：AI Agent（智能体）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%EF%BC%9AReAct%E8%8C%83%E5%BC%8F"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">基础架构：ReAct范式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LangChain%E6%A1%86%E6%9E%B6"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">LangChain框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E4%BD%93%E5%88%86%E7%B1%BB%E4%BD%93%E7%B3%BB"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">智能体分类体系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">第三阶：大模型微调</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E8%B0%83%E7%9A%84%E5%BF%85%E7%84%B6%E6%80%A7"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">微调的必然性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AE%E8%B0%83%E6%8A%80%E6%9C%AF%E4%BD%93%E7%B3%BB"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">微调技术体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">主流技术方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%EF%BC%9A%E9%A2%84%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.4.</span> <span class="toc-text">第四阶：预训练技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">三种网络框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">预训练策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-number">1.3.</span> <span class="toc-text">技术演进的启示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">发展趋势分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E4%B8%9A%E5%8C%96%E6%80%9D%E8%80%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">产业化思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.3.3.</span> <span class="toc-text">未来展望</span></a></li></ol></li></ol></li></ol>
+            </div>
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+    </div>
+    <div class="post-archive">
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">Claude Code 最佳实践与使用教程（中文整理）</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/%E7%A7%8B%E6%8B%9B%E6%B1%82%E8%81%8C%E6%8C%87%E5%8D%97/">秋招求职指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">区块链技术深度解析：从概念到应用</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">比特币投资指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2025/08/23/hello-world/">Hello World</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">Ai学习第一章</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/%E5%B9%BF%E5%B7%9EAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%A4%A7%E4%BC%9A%E6%B4%9E%E5%AF%9F-AI%E5%9C%A8%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/">广州AI产品经理大会洞察：AI在金融领域的应用与落地实践</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/meme%E5%B8%81%E7%AE%80%E5%8F%B2-%E8%B5%B7%E6%BA%90%E4%BB%B7%E5%80%BC%E5%8F%8A%E6%9C%BA%E9%81%87/">新人科普丨Meme币简史：起源、价值及机遇</a>
+        </li>
+            </ul>
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+            <span class="sidebar-tag-name" data-tags="加密货币">
+                <span class="iconfont-archer">&#xe606;</span>
+                加密货币
+            </span>
+            <span class="sidebar-tag-name" data-tags="区块链">
+                <span class="iconfont-archer">&#xe606;</span>
+                区块链
+            </span>
+            <span class="sidebar-tag-name" data-tags="BTC">
+                <span class="iconfont-archer">&#xe606;</span>
+                BTC
+            </span>
+            <span class="sidebar-tag-name" data-tags="比特币">
+                <span class="iconfont-archer">&#xe606;</span>
+                比特币
+            </span>
+            <span class="sidebar-tag-name" data-tags="投资">
+                <span class="iconfont-archer">&#xe606;</span>
+                投资
+            </span>
+            <span class="sidebar-tag-name" data-tags="技术">
+                <span class="iconfont-archer">&#xe606;</span>
+                技术
+            </span>
+            <span class="sidebar-tag-name" data-tags="学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                学习
+            </span>
+            <span class="sidebar-tag-name" data-tags="求职">
+                <span class="iconfont-archer">&#xe606;</span>
+                求职
+            </span>
+            <span class="sidebar-tag-name" data-tags="经验分享">
+                <span class="iconfont-archer">&#xe606;</span>
+                经验分享
+            </span>
+            <span class="sidebar-tag-name" data-tags="AI">
+                <span class="iconfont-archer">&#xe606;</span>
+                AI
+            </span>
+            <span class="sidebar-tag-name" data-tags="Ai-PM-Meetup">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ai-PM-Meetup
+            </span>
+            <span class="sidebar-tag-name" data-tags="Meme币">
+                <span class="iconfont-archer">&#xe606;</span>
+                Meme币
+            </span>
+            <span class="sidebar-tag-name" data-tags="金融科技">
+                <span class="iconfont-archer">&#xe606;</span>
+                金融科技
+            </span>
+            <span class="sidebar-tag-name" data-tags="产品经理">
+                <span class="iconfont-archer">&#xe606;</span>
+                产品经理
+            </span>
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+        <span class="sidebar-category-name" data-categories="区块链技术">
+            <span class="iconfont-archer">&#xe60a;</span>
+            区块链技术
+        </span>
+        <span class="sidebar-category-name" data-categories="投资">
+            <span class="iconfont-archer">&#xe60a;</span>
+            投资
+        </span>
+        <span class="sidebar-category-name" data-categories="AI Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="秋招">
+            <span class="iconfont-archer">&#xe60a;</span>
+            秋招
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="AI-Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI-Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="Ai-PM-Meetup">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Ai-PM-Meetup
+        </span>
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://alger0001.github.io",
+        root: siteMetaRoot,
+        author: "路易斯"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+        <!-- main func -->
+        <script src="/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <!-- algolia -->
+        <!-- busuanzi -->
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        <!-- async load share.js -->
+            <script src="/scripts/share.js" async></script>
+        <!-- mermaid -->
+        
+        <!-- Gemini AI Assistant -->
+            <link rel="stylesheet" href="/css/ai-assistant.css">
+            <script src="/js/ai-assistant.js"></script>
+    </body>
+</html>

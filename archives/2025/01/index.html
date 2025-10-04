@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+<!-- keywords -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="路易斯">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="路易斯">
+        <meta name="keywords" content="博客,技术,生活,分享,比特币,投资,hexo,hexo-theme,hexo-blog">
+    <meta name="description" content="一个专注于技术分享和个人成长的博客">
+    <meta name="description" content="一个专注于技术分享和个人成长的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="路易斯的数字世界">
+<meta property="og:url" content="https://alger0001.github.io/archives/2025/01/index.html">
+<meta property="og:site_name" content="路易斯的数字世界">
+<meta property="og:description" content="一个专注于技术分享和个人成长的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="路易斯">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="生活">
+<meta property="article:tag" content="分享">
+<meta property="article:tag" content="比特币">
+<meta property="article:tag" content="投资">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    <title>Louis Don&#39;s blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .footer-fixed-btn,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    <!-- 百度统计  -->
+    <!-- 谷歌统计  -->
+    <!-- Google tag (gtag.js) -->
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="路易斯的数字世界" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href="/">Welcome to Louis's Digital World</a>
+        </span>
+    </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/">Welcome to Louis&#39;s Digital World</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name"></a>
+        </div>
+    </div>
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- donate button -->
+
+    <!-- back to top button -->
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="">
+    <!-- 主页  -->
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+        </p>
+        <!-- 文章页 meta -->
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
+            <div class="container container-unloaded">
+                <main class="main index-page">
+            
+        <article class="index-post">
+            <a class="abstract-title" href="/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">
+                <span class="abstract-title-text">Ai学习第一章</span>
+            </a>
+            <div class="abstract-content">
+                AI技术发展演变与大模型四阶技术解析
+AI技术的演变如同人类文明的发展历程，从最初的模仿生物信号处理，到现在的通用人工智能系统，每一次跃升都带来了新的可能性。本文将带您深入了解AI技术发展的脉络，以及大模型时代的四阶技术架构。
+
+AI技术发展的四个阶段1. 生物思考信号 → 专家系统（符号主义时代）起源与核心思想：
+
+生物启发：早期AI研究从人类大脑的工作机制中汲取灵感，试图模拟神经元的信号传递过程
+符号主义主导：基于逻辑推理和符号操作的专家系统成为主流
+核心特征：规则驱动、知识库为中心、确定性推理
+
+代表技术：
+
+专家系统（Expert Systems）
+基于规则的推理引擎
+知识图谱和...
+            </div>
+            <!-- read more -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/09/28">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2025/01/07</span>
+                </div>
+                <!-- tags -->
+                    <div class="abstract-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="技术">技术</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="学习">学习</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="AI">AI</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Ai-PM-Meetup">Ai-PM-Meetup</a>
+</div>
+
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+            
+        <article class="index-post">
+            <a class="abstract-title" href="/2025/01/07/%E5%B9%BF%E5%B7%9EAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%A4%A7%E4%BC%9A%E6%B4%9E%E5%AF%9F-AI%E5%9C%A8%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/">
+                <span class="abstract-title-text">广州AI产品经理大会洞察：AI在金融领域的应用与落地实践</span>
+            </a>
+            <div class="abstract-content">
+                广州AI产品经理大会洞察：AI在金融领域的应用与落地实践引言随着人工智能技术的飞速发展，AI已成为推动各行各业转型升级的核心动力。在金融领域，AI的应用正以前所未有的速度改变着传统业务模式，从提升运营效率到优化客户体验，再到强化风险管理，其影响力日益深远。广州AI产品经理大会聚焦了这一前沿趋势，特别是对AI在金融领域的深度应用和落地实践进行了探讨。本文将结合大会的洞察，深入剖析AI在金融行业的应用场景、面临的挑战，以及银行客服系统中的具体实践和AI落地的最佳策略，旨在为AI产品经理和相关从业者提供有价值的参考。
+一、徐小磊：AI在金融领域的应用与银行客服系统实践徐小磊在大会上深入探讨了A...
+            </div>
+            <!-- read more -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/09/28">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2025/01/07</span>
+                </div>
+                <!-- tags -->
+                    <div class="abstract-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="AI">AI</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Ai-PM-Meetup">Ai-PM-Meetup</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="金融科技">金融科技</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="产品经理">产品经理</a>
+</div>
+
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+            
+        <article class="index-post">
+            <a class="abstract-title" href="/2025/01/07/meme%E5%B8%81%E7%AE%80%E5%8F%B2-%E8%B5%B7%E6%BA%90%E4%BB%B7%E5%80%BC%E5%8F%8A%E6%9C%BA%E9%81%87/">
+                <span class="abstract-title-text">新人科普丨Meme币简史：起源、价值及机遇</span>
+            </a>
+            <div class="abstract-content">
+                新人科普丨Meme币简史：起源、价值及机遇
+原文来源：PANews - Meme币简史：起源、价值及机遇
+作者：DAOSquare
+发布日期：2024年3月28日
+
+Meme币是数字货币和互联网文化的交汇点，它对参与者的吸引力已经贯穿了整个加密周期。另外，他们以其草根性、病毒式的传播以及诱人的丰厚回报潜力牢牢抓住了时代的主流。
+什么是Meme？Meme是一个承载了文化思想和符号，并不断地在人们的意识中扩散传播的单位。与基因一样，Meme的传播能力也各不相同，那些能引起共鸣的Meme会经久不衰，而影响力较小的Meme则很快就会被遗忘。
+互联网带来了”互联网Meme”的概念，它可以让Meme...
+            </div>
+            <!-- read more -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/10/04">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2025/01/07</span>
+                </div>
+                <!-- tags -->
+                    <div class="abstract-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="加密货币">加密货币</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="区块链">区块链</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="投资">投资</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Meme币">Meme币</a>
+</div>
+
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    <!-- paginator  -->
+</main>
+
+                <!-- profile -->
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+        <div class="social">
+                            <a href="mailto:3259331973@qq.com" class="iconfont-archer email" title="email" ></a>
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+                <span class="iconfont-archer wechat" title="wechat">
+                    <img class="profile-qr" src="/avatar/Wechat.png" />
+                </span>
+                <span class="iconfont-archer qq" title="qq">
+                    <img class="profile-qr" src="/avatar/QQ.png" />
+                </span>
+
+        </div>
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    <!-- 不蒜子  -->
+        <div class="busuanzi-container">
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+        </div>
+</footer>
+
+        </div>
+        <!-- toc -->
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+    </div>
+    <div class="post-archive">
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">Claude Code 最佳实践与使用教程（中文整理）</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/%E7%A7%8B%E6%8B%9B%E6%B1%82%E8%81%8C%E6%8C%87%E5%8D%97/">秋招求职指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">区块链技术深度解析：从概念到应用</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">比特币投资指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2025/08/23/hello-world/">Hello World</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">Ai学习第一章</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/%E5%B9%BF%E5%B7%9EAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%A4%A7%E4%BC%9A%E6%B4%9E%E5%AF%9F-AI%E5%9C%A8%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/">广州AI产品经理大会洞察：AI在金融领域的应用与落地实践</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/meme%E5%B8%81%E7%AE%80%E5%8F%B2-%E8%B5%B7%E6%BA%90%E4%BB%B7%E5%80%BC%E5%8F%8A%E6%9C%BA%E9%81%87/">新人科普丨Meme币简史：起源、价值及机遇</a>
+        </li>
+            </ul>
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+            <span class="sidebar-tag-name" data-tags="加密货币">
+                <span class="iconfont-archer">&#xe606;</span>
+                加密货币
+            </span>
+            <span class="sidebar-tag-name" data-tags="区块链">
+                <span class="iconfont-archer">&#xe606;</span>
+                区块链
+            </span>
+            <span class="sidebar-tag-name" data-tags="BTC">
+                <span class="iconfont-archer">&#xe606;</span>
+                BTC
+            </span>
+            <span class="sidebar-tag-name" data-tags="比特币">
+                <span class="iconfont-archer">&#xe606;</span>
+                比特币
+            </span>
+            <span class="sidebar-tag-name" data-tags="投资">
+                <span class="iconfont-archer">&#xe606;</span>
+                投资
+            </span>
+            <span class="sidebar-tag-name" data-tags="技术">
+                <span class="iconfont-archer">&#xe606;</span>
+                技术
+            </span>
+            <span class="sidebar-tag-name" data-tags="学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                学习
+            </span>
+            <span class="sidebar-tag-name" data-tags="求职">
+                <span class="iconfont-archer">&#xe606;</span>
+                求职
+            </span>
+            <span class="sidebar-tag-name" data-tags="经验分享">
+                <span class="iconfont-archer">&#xe606;</span>
+                经验分享
+            </span>
+            <span class="sidebar-tag-name" data-tags="AI">
+                <span class="iconfont-archer">&#xe606;</span>
+                AI
+            </span>
+            <span class="sidebar-tag-name" data-tags="Ai-PM-Meetup">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ai-PM-Meetup
+            </span>
+            <span class="sidebar-tag-name" data-tags="Meme币">
+                <span class="iconfont-archer">&#xe606;</span>
+                Meme币
+            </span>
+            <span class="sidebar-tag-name" data-tags="金融科技">
+                <span class="iconfont-archer">&#xe606;</span>
+                金融科技
+            </span>
+            <span class="sidebar-tag-name" data-tags="产品经理">
+                <span class="iconfont-archer">&#xe606;</span>
+                产品经理
+            </span>
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+        <span class="sidebar-category-name" data-categories="区块链技术">
+            <span class="iconfont-archer">&#xe60a;</span>
+            区块链技术
+        </span>
+        <span class="sidebar-category-name" data-categories="投资">
+            <span class="iconfont-archer">&#xe60a;</span>
+            投资
+        </span>
+        <span class="sidebar-category-name" data-categories="AI Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="秋招">
+            <span class="iconfont-archer">&#xe60a;</span>
+            秋招
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="AI-Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI-Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="Ai-PM-Meetup">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Ai-PM-Meetup
+        </span>
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://alger0001.github.io",
+        root: siteMetaRoot,
+        author: "路易斯"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+        <!-- main func -->
+        <script src="/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <!-- algolia -->
+        <!-- busuanzi -->
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        <!-- async load share.js -->
+        <!-- mermaid -->
+        
+        <!-- Gemini AI Assistant -->
+            <link rel="stylesheet" href="/css/ai-assistant.css">
+            <script src="/js/ai-assistant.js"></script>
+    </body>
+</html>

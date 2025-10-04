@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+<!-- keywords -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="路易斯">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="路易斯">
+        <meta name="keywords" content="博客,技术,生活,分享,比特币,投资,hexo,hexo-theme,hexo-blog">
+    <meta name="description" content="一个专注于技术分享和个人成长的博客">
+    <meta name="description" content="基于 Anthropic 官方《Claude Code: Best practices for agentic coding》的要点梳理与上手指南，覆盖环境配置、工具授权、工作流范式与自动化技巧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code 最佳实践与使用教程（中文整理）">
+<meta property="og:url" content="https://alger0001.github.io/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="路易斯的数字世界">
+<meta property="og:description" content="基于 Anthropic 官方《Claude Code: Best practices for agentic coding》的要点梳理与上手指南，覆盖环境配置、工具授权、工作流范式与自动化技巧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-03T15:20:00.000Z">
+<meta property="article:modified_time" content="2025-09-04T00:39:11.852Z">
+<meta property="article:author" content="路易斯">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    <title>Claude Code 最佳实践与使用教程（中文整理） · Louis Don&#39;s blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .footer-fixed-btn,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(
+            -45deg,
+            #444 0,
+            #444 80px,
+            #333 80px,
+            #333 160px
+        );
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link id="stylesheet-fancybox" rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-base" rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="stylesheet-mobile" rel="preload" href="/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
+    <link id="stylesheet-theme-dark" rel="preload" href="/css/dark.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    <!-- 百度统计  -->
+    <!-- 谷歌统计  -->
+    <!-- Google tag (gtag.js) -->
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="路易斯的数字世界" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+        <body class="post-body">
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        <div class="header-sidebar-menu">
+            <div style="padding-left: 1px;">&#xe775;</div>
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href="/">Welcome to Louis's Digital World</a>
+        </span>
+    </div>
+    <!-- toggle banner -->
+    <div class="banner">
+        <div class="blog-title header-element">
+            <a href="/">Welcome to Louis&#39;s Digital World</a>
+        </div>
+        <div class="post-title header-element">
+            <a href="#" class="post-name">Claude Code 最佳实践与使用教程（中文整理）</a>
+        </div>
+    </div>
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- donate button -->
+
+    <!-- back to top button -->
+    <div class="footer-fixed-btn footer-fixed-btn--hidden back-top">
+        <div>&#xe639;</div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="    height:50vh;
+">
+    <!-- 主页  -->
+    <!-- 404页  -->
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+                Claude Code 最佳实践与使用教程（中文整理）
+            <!-- 404 -->
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            <!-- 404 -->
+        </p>
+        <!-- 文章页 meta -->
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                    <div class="post-intro-tags" >
+        <a class="post-tag" href="javascript:void(0);" data-tags="技术">技术</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="学习">学习</a>
+</div>
+
+                <!-- 文章字数统计 -->
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2025/09/03</span>
+                    <!-- busuanzi -->
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" alt="loading">
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="🧩-概览"><a href="#🧩-概览" class="headerlink" title="🧩 概览"></a>🧩 概览</h2><p>本文整理自 Anthropic 官方文章“Claude Code: Best practices for agentic coding”，并结合实际终端操作给出一套可复制的使用教程，帮助你把 Claude Code 融入日常开发工作流。</p>
+<p>参考链接（建议收藏）：<a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-best-practices?utm_source=chatgpt.com">Claude Code: Best practices for agentic coding</a></p>
+<h2 id="🔧-环境与基础配置"><a href="#🔧-环境与基础配置" class="headerlink" title="🔧 环境与基础配置"></a>🔧 环境与基础配置</h2><ul>
+<li><p>安装与启动</p>
+<ul>
+<li>推荐使用最新版 Claude Code（命令行工具）。</li>
+<li>将项目根目录作为你的工作目录，便于工具自动收集上下文。</li>
+</ul>
+</li>
+<li><p>创建与维护 <code>CLAUDE.md</code></p>
+<ul>
+<li>作用：在会话开始时自动被读取，充当“项目速记 + 使用说明”。</li>
+<li>放置位置：<ul>
+<li>仓库根目录（最常见）</li>
+<li>子目录（单体仓库的子项目）</li>
+<li>父目录（在多层级项目中复用）</li>
+<li>用户目录 <code>~/.claude/CLAUDE.md</code>（全局生效）</li>
+</ul>
+</li>
+<li>建议内容：常用命令、代码规范、测试与部署方式、注意事项等。</li>
+</ul>
+</li>
+<li><p>精调 <code>CLAUDE.md</code></p>
+<ul>
+<li>把它当“提示词”维护，短平快且可迭代。</li>
+<li>经常回顾有效性，结合团队实践不断修改。</li>
+</ul>
+</li>
+</ul>
+<h2 id="🛡️-工具授权与安全策略"><a href="#🛡️-工具授权与安全策略" class="headerlink" title="🛡️ 工具授权与安全策略"></a>🛡️ 工具授权与安全策略</h2><ul>
+<li>Claude Code 默认保守：涉及改动系统或代码的行为会请求授权。</li>
+<li>你可以通过以下方式放行常用、安全的工具：<ul>
+<li>在授权弹窗中选择“Always allow”。</li>
+<li>会话内使用 <code>/permissions</code> 管理允许列表。</li>
+<li>编辑 <code>.claude/settings.json</code> 或 <code>~/.claude.json</code>。</li>
+<li>启动时使用 <code>--allowedTools</code> 临时放行。</li>
+</ul>
+</li>
+</ul>
+<p>常见建议：允许 Edit（文件编辑）、<code>Bash(git commit:*)</code>（提交易回滚），其余按需放开。</p>
+<h2 id="🧰-让-Claude-拥有更多“本地超能力”"><a href="#🧰-让-Claude-拥有更多“本地超能力”" class="headerlink" title="🧰 让 Claude 拥有更多“本地超能力”"></a>🧰 让 Claude 拥有更多“本地超能力”</h2><ul>
+<li><p>继承你的 Shell 环境：可直接使用系统工具与脚本。</p>
+</li>
+<li><p>使用 MCP（Model Context Protocol）：</p>
+<ul>
+<li>作为客户端连接多个 MCP 服务器（如浏览器自动化、监控平台等）。</li>
+<li>可放在项目配置、全局配置或 <code>.mcp.json</code> 中共享给团队。</li>
+</ul>
+</li>
+<li><p>自定义斜杠命令 <code>/</code>：</p>
+<ul>
+<li>在 <code>.claude/commands</code> 中放置 Markdown 模板，作为可复用工作流。</li>
+<li>支持 <code>$ARGUMENTS</code> 参数占位，便于快速复用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="🧠-高效工作流范式"><a href="#🧠-高效工作流范式" class="headerlink" title="🧠 高效工作流范式"></a>🧠 高效工作流范式</h2><ul>
+<li><p>清晰拆分任务：复杂任务用清单（Markdown&#x2F;GitHub Issue）驱动。</p>
+</li>
+<li><p>多 Claude 协作：</p>
+<ul>
+<li>一个写代码，另一个评审或写测试；再开一个根据评审修改。</li>
+<li>多分支&#x2F;多工作树（git worktree）并行推进互不干扰的任务。</li>
+</ul>
+</li>
+<li><p>Headless（无头）模式自动化：</p>
+<ul>
+<li><code>claude -p &quot;&lt;你的提示&gt;&quot; --output-format stream-json</code> 适合集成到 CI&#x2F;脚本。</li>
+<li>两种模式：<ul>
+<li>扇出（fan-out）：大规模迁移&#x2F;批处理分析。</li>
+<li>流水线（pipeline）：把 Claude 嵌入既有数据&#x2F;处理链路。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="🧪-给-Claude-提供正确的数据"><a href="#🧪-给-Claude-提供正确的数据" class="headerlink" title="🧪 给 Claude 提供正确的数据"></a>🧪 给 Claude 提供正确的数据</h2><ul>
+<li>常用方式：直接粘贴、管道输入、让它自行拉取（bash&#x2F;MCP&#x2F;HTTP）、读取本地文件。</li>
+<li>要点：一次只专注一件事，必要时 <code>/clear</code> 重置上下文以避免干扰。</li>
+</ul>
+<h2 id="🛠️-实用命令速记（可放进-CLAUDE-md）"><a href="#🛠️-实用命令速记（可放进-CLAUDE-md）" class="headerlink" title="🛠️ 实用命令速记（可放进 CLAUDE.md）"></a>🛠️ 实用命令速记（可放进 CLAUDE.md）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 代码质量</span></span><br><span class="line">npm run typecheck</span><br><span class="line">npm run lint</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">npm <span class="built_in">test</span> -- --watch</span><br><span class="line"></span><br><span class="line"><span class="comment"># Git 工作流（示例）</span></span><br><span class="line">git switch -c feat/awesome-change</span><br><span class="line">git commit -m <span class="string">&quot;feat: implement awesome change&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🚀-新手到进阶的实操路线"><a href="#🚀-新手到进阶的实操路线" class="headerlink" title="🚀 新手到进阶的实操路线"></a>🚀 新手到进阶的实操路线</h2><ol>
+<li><p>初始化与环境：</p>
+<ul>
+<li>在项目根新建简洁的 <code>CLAUDE.md</code>，记录常用命令与规范。</li>
+<li>配置允许列表，放行文件编辑与 <code>git commit</code>。</li>
+</ul>
+</li>
+<li><p>日常开发：</p>
+<ul>
+<li>让 Claude 打开&#x2F;阅读关键文件，提出设计或重构建议。</li>
+<li>以“编辑-测试-修复”的小循环推进，降低上下文噪声。</li>
+</ul>
+</li>
+<li><p>自动化提效：</p>
+<ul>
+<li>为重复操作沉淀 <code>/</code> 命令模板（如“修复某类 Lint 错误”、“生成发布日志”）。</li>
+<li>在 CI 中用 headless 模式做问题分拣、文本校对、变更摘要。</li>
+</ul>
+</li>
+<li><p>团队协作：</p>
+<ul>
+<li>把 <code>CLAUDE.md</code> 与 <code>.claude/commands</code> 一并纳入版本控制，团队共享。</li>
+<li>用 git worktree&#x2F;多工作目录让多个 Claude 并行处理不同子任务。</li>
+</ul>
+</li>
+</ol>
+<h2 id="📎-参考与延伸阅读"><a href="#📎-参考与延伸阅读" class="headerlink" title="📎 参考与延伸阅读"></a>📎 参考与延伸阅读</h2><ul>
+<li>官方最佳实践原文：<ul>
+<li><a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-best-practices?utm_source=chatgpt.com">Claude Code: Best practices for agentic coding</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>如果你正把 Claude Code 集成到本博客的写作&#x2F;发布流程，我也建议把常用命令与注意事项写进仓库根的 <code>CLAUDE.md</code>，这样每次开启对话都能自动获得最佳上下文，效率会更高。</p>
+
+    </article>
+    <!-- license -->
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://alger0001.github.io">路易斯</a>
+            <p>原文链接：<a href="https://alger0001.github.io/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">https://alger0001.github.io/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</a>
+            <p>发表日期：<a href="https://alger0001.github.io/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">September 3rd 2025, 11:20:00 pm</a>
+            <p>更新日期：<a href="https://alger0001.github.io/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">September 4th 2025, 8:39:11 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2025/09/03/%E7%A7%8B%E6%8B%9B%E6%B1%82%E8%81%8C%E6%8C%87%E5%8D%97/" title="秋招求职指南">
+                    <div class="nextTitle">秋招求职指南</div>
+                </a>
+        </li>
+        <li class="previous">
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2025/08/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/" title="区块链技术深度解析：从概念到应用">
+                    <div class="prevTitle">区块链技术深度解析：从概念到应用</div>
+                </a>
+        </li>
+    </ul>
+    <!-- comment -->
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+            
+            
+            
+            <!-- utteranc评论 -->
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+            
+            
+            
+        </div>
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    <!-- Mathjax -->
+</main>
+
+                <!-- profile -->
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+        <div class="social">
+                            <a href="mailto:3259331973@qq.com" class="iconfont-archer email" title="email" ></a>
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+                <span class="iconfont-archer wechat" title="wechat">
+                    <img class="profile-qr" src="/avatar/Wechat.png" />
+                </span>
+                <span class="iconfont-archer qq" title="qq">
+                    <img class="profile-qr" src="/avatar/QQ.png" />
+                </span>
+
+        </div>
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    <!-- 不蒜子  -->
+        <div class="busuanzi-container">
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+        </div>
+</footer>
+
+        </div>
+        <!-- toc -->
+            <div class="toc-wrapper toc-wrapper-loding" style=    top:50vh;
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E6%A6%82%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">🧩 概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">🔧 环境与基础配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A1%EF%B8%8F-%E5%B7%A5%E5%85%B7%E6%8E%88%E6%9D%83%E4%B8%8E%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-number">3.</span> <span class="toc-text">🛡️ 工具授权与安全策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E8%AE%A9-Claude-%E6%8B%A5%E6%9C%89%E6%9B%B4%E5%A4%9A%E2%80%9C%E6%9C%AC%E5%9C%B0%E8%B6%85%E8%83%BD%E5%8A%9B%E2%80%9D"><span class="toc-number">4.</span> <span class="toc-text">🧰 让 Claude 拥有更多“本地超能力”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E9%AB%98%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%8C%83%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">🧠 高效工作流范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%AA-%E7%BB%99-Claude-%E6%8F%90%E4%BE%9B%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">6.</span> <span class="toc-text">🧪 给 Claude 提供正确的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E8%AE%B0%EF%BC%88%E5%8F%AF%E6%94%BE%E8%BF%9B-CLAUDE-md%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">🛠️ 实用命令速记（可放进 CLAUDE.md）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E6%96%B0%E6%89%8B%E5%88%B0%E8%BF%9B%E9%98%B6%E7%9A%84%E5%AE%9E%E6%93%8D%E8%B7%AF%E7%BA%BF"><span class="toc-number">8.</span> <span class="toc-text">🚀 新手到进阶的实操路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8E-%E5%8F%82%E8%80%83%E4%B8%8E%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">9.</span> <span class="toc-text">📎 参考与延伸阅读</span></a></li></ol>
+            </div>
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+    </div>
+    <div class="post-archive">
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/claude-code-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">Claude Code 最佳实践与使用教程（中文整理）</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span>
+            <a class="archive-post-title" href="/2025/09/03/%E7%A7%8B%E6%8B%9B%E6%B1%82%E8%81%8C%E6%8C%87%E5%8D%97/">秋招求职指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">区块链技术深度解析：从概念到应用</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span>
+            <a class="archive-post-title" href="/2025/08/24/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/">比特币投资指南</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span>
+            <a class="archive-post-title" href="/2025/08/23/hello-world/">Hello World</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/AI%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98%E4%B8%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9B%9B%E9%98%B6%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/">Ai学习第一章</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/%E5%B9%BF%E5%B7%9EAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%A4%A7%E4%BC%9A%E6%B4%9E%E5%AF%9F-AI%E5%9C%A8%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/">广州AI产品经理大会洞察：AI在金融领域的应用与落地实践</a>
+        </li>
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/07</span>
+            <a class="archive-post-title" href="/2025/01/07/meme%E5%B8%81%E7%AE%80%E5%8F%B2-%E8%B5%B7%E6%BA%90%E4%BB%B7%E5%80%BC%E5%8F%8A%E6%9C%BA%E9%81%87/">新人科普丨Meme币简史：起源、价值及机遇</a>
+        </li>
+            </ul>
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+            <span class="sidebar-tag-name" data-tags="加密货币">
+                <span class="iconfont-archer">&#xe606;</span>
+                加密货币
+            </span>
+            <span class="sidebar-tag-name" data-tags="区块链">
+                <span class="iconfont-archer">&#xe606;</span>
+                区块链
+            </span>
+            <span class="sidebar-tag-name" data-tags="BTC">
+                <span class="iconfont-archer">&#xe606;</span>
+                BTC
+            </span>
+            <span class="sidebar-tag-name" data-tags="比特币">
+                <span class="iconfont-archer">&#xe606;</span>
+                比特币
+            </span>
+            <span class="sidebar-tag-name" data-tags="投资">
+                <span class="iconfont-archer">&#xe606;</span>
+                投资
+            </span>
+            <span class="sidebar-tag-name" data-tags="技术">
+                <span class="iconfont-archer">&#xe606;</span>
+                技术
+            </span>
+            <span class="sidebar-tag-name" data-tags="学习">
+                <span class="iconfont-archer">&#xe606;</span>
+                学习
+            </span>
+            <span class="sidebar-tag-name" data-tags="求职">
+                <span class="iconfont-archer">&#xe606;</span>
+                求职
+            </span>
+            <span class="sidebar-tag-name" data-tags="经验分享">
+                <span class="iconfont-archer">&#xe606;</span>
+                经验分享
+            </span>
+            <span class="sidebar-tag-name" data-tags="AI">
+                <span class="iconfont-archer">&#xe606;</span>
+                AI
+            </span>
+            <span class="sidebar-tag-name" data-tags="Ai-PM-Meetup">
+                <span class="iconfont-archer">&#xe606;</span>
+                Ai-PM-Meetup
+            </span>
+            <span class="sidebar-tag-name" data-tags="Meme币">
+                <span class="iconfont-archer">&#xe606;</span>
+                Meme币
+            </span>
+            <span class="sidebar-tag-name" data-tags="金融科技">
+                <span class="iconfont-archer">&#xe606;</span>
+                金融科技
+            </span>
+            <span class="sidebar-tag-name" data-tags="产品经理">
+                <span class="iconfont-archer">&#xe606;</span>
+                产品经理
+            </span>
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+        <span class="sidebar-category-name" data-categories="区块链技术">
+            <span class="iconfont-archer">&#xe60a;</span>
+            区块链技术
+        </span>
+        <span class="sidebar-category-name" data-categories="投资">
+            <span class="iconfont-archer">&#xe60a;</span>
+            投资
+        </span>
+        <span class="sidebar-category-name" data-categories="AI Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="秋招">
+            <span class="iconfont-archer">&#xe60a;</span>
+            秋招
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="AI-Leaning">
+            <span class="iconfont-archer">&#xe60a;</span>
+            AI-Leaning
+        </span>
+        <span class="sidebar-category-name" data-categories="加密货币">
+            <span class="iconfont-archer">&#xe60a;</span>
+            加密货币
+        </span>
+        <span class="sidebar-category-name" data-categories="Ai-PM-Meetup">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Ai-PM-Meetup
+        </span>
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://alger0001.github.io",
+        root: siteMetaRoot,
+        author: "路易斯"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+        <!-- main func -->
+        <script src="/scripts/main.js"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <!-- algolia -->
+        <!-- busuanzi -->
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        <!-- async load share.js -->
+            <script src="/scripts/share.js" async></script>
+        <!-- mermaid -->
+        
+        <!-- Gemini AI Assistant -->
+            <link rel="stylesheet" href="/css/ai-assistant.css">
+            <script src="/js/ai-assistant.js"></script>
+    </body>
+</html>
